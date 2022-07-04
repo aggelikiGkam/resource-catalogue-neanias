@@ -20,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("event")
+@ApiIgnore
 public class EventController extends ResourceController<Event, Authentication> {
 
     private EventService eventService;

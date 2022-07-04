@@ -27,6 +27,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("exportToCSV")
+@ApiIgnore
 public class CSVController {
 
     private static Logger logger = LogManager.getLogger(CSVController.class);

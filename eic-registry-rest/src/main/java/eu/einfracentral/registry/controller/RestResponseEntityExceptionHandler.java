@@ -23,12 +23,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
 @Order(1)
+@ApiIgnore
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final Logger logger = LogManager.getLogger(RestResponseEntityExceptionHandler.class);

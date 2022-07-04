@@ -74,6 +74,7 @@ public abstract class ResourceManager<T extends Identifiable> extends AbstractGe
         String serialized = serialize(t);
         Resource created = new Resource();
         created.setPayload(serialized);
+        logger.info("Adding Resource {}", serialized);
         created.setResourceType(resourceType);
         resourceService.addResource(created);
         logger.debug("Adding Resource {}", t);

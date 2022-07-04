@@ -17,10 +17,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Collection;
 
 @ControllerAdvice
+@ApiIgnore
 public class SecureResponseAdvice<T> implements ResponseBodyAdvice<T> {
 
     private final SecurityService securityService;

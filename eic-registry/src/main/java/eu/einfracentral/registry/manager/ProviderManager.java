@@ -239,10 +239,12 @@ public class ProviderManager extends ResourceManager<ProviderBundle> implements 
             }
         }
         // else return the Provider ONLY if he is active
-        if (providerBundle.getStatus().equals(vocabularyService.get("approved provider").getId())){
-            return providerBundle;
-        }
-        throw new ValidationException("You cannot view the specific Provider");
+        return providerBundle;
+////        if (providerBundle.getStatus().equals(vocabularyService.get("approved provider").getId())){
+//        if (providerBundle.getStatus().equals("approved")){
+//            return providerBundle;
+//        }
+//        throw new ValidationException("You cannot view the specific Provider");
     }
 
     @Override
@@ -258,10 +260,12 @@ public class ProviderManager extends ResourceManager<ProviderBundle> implements 
             }
         }
         // else return the Provider ONLY if he is active
-        if (providerBundle.getStatus().equals(vocabularyService.get("approved provider").getId())){
-            return providerBundle;
-        }
-        throw new ValidationException("You cannot view the specific Provider");
+        return providerBundle;
+////        if (providerBundle.getStatus().equals(vocabularyService.get("approved provider").getId())){
+//        if (providerBundle.getStatus().equals("approved")){
+//            return providerBundle;
+//        }
+//        throw new ValidationException("You cannot view the specific Provider");
     }
 
     @Override
@@ -346,7 +350,8 @@ public class ProviderManager extends ResourceManager<ProviderBundle> implements 
         }
 
         // else return ONLY approved Providers
-        ff.addFilter("status", "approved provider");
+//        ff.addFilter("status", "approved provider");
+//        ff.addFilter("status", "approved");
         Browsing<ProviderBundle> providers = super.getAll(ff, auth);
         retList.addAll(providers.getResults());
         providers.setResults(retList);

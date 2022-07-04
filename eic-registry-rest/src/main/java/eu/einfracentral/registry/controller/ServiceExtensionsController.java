@@ -30,6 +30,7 @@ import java.util.*;
 @RestController
 @RequestMapping("service-extensions")
 @Api(value = "Get information about Service Helpdesk and Monitoring")
+@ApiIgnore
 public class ServiceExtensionsController {
 
     private static final Logger logger = LogManager.getLogger(ServiceExtensionsController.class);

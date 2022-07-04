@@ -24,6 +24,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("info")
 @Api(value = "Get General Information")
+@ApiIgnore
 public class InfoController {
 
     private static final String INFO = "general_INFO";

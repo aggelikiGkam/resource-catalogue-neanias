@@ -23,6 +23,7 @@ import javax.sql.DataSource;
 @RestController
 @RequestMapping({"dataSource"})
 @Api(description = "Operations for DataSources")
+@ApiIgnore
 public class DataSourceController {
 
     private static final Logger logger = LogManager.getLogger(DataSourceController.class);

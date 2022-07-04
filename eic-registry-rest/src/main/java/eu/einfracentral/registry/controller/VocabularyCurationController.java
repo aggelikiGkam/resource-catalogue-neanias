@@ -25,6 +25,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("vocabularyCuration")
 @Api(value = "Get information about a Vocabulary Curation")
+@ApiIgnore
 public class VocabularyCurationController extends ResourceController<VocabularyCuration, Authentication> {
 
     private static final Logger logger = LogManager.getLogger(VocabularyCurationController.class);
