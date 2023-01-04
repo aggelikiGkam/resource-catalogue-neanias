@@ -16,16 +16,10 @@ public class SimpleIdCreator implements IdCreator {
     @Override
     public String createProviderId(Provider provider) {
         String providerId;
-        if (provider.getId() == null || "".equals(provider.getId())) {
-            if (provider.getAbbreviation() != null && !"".equals(provider.getAbbreviation()) && !"null".equals(provider.getAbbreviation())) {
-                providerId = provider.getAbbreviation();
-            } else if (provider.getName() != null && !"".equals(provider.getName()) && !"null".equals(provider.getName())) {
-                providerId = provider.getName();
-            } else {
-                throw new ValidationException("Provider must have an acronym or name.");
-            }
+        if (provider.getAbbreviation() != null && !"".equals(provider.getAbbreviation()) && !"null".equals(provider.getAbbreviation())) {
+            providerId = provider.getAbbreviation();
         } else {
-            providerId = provider.getId();
+            throw new ValidationException("Provider must have an abbreviation.");
         }
         return StringUtils
                 .stripAccents(providerId)
@@ -43,10 +37,8 @@ public class SimpleIdCreator implements IdCreator {
         if (catalogue.getId() == null || "".equals(catalogue.getId())) {
             if (catalogue.getAbbreviation() != null && !"".equals(catalogue.getAbbreviation()) && !"null".equals(catalogue.getAbbreviation())) {
                 catalogueId = catalogue.getAbbreviation();
-            } else if (catalogue.getName() != null && !"".equals(catalogue.getName()) && !"null".equals(catalogue.getName())) {
-                catalogueId = catalogue.getName();
             } else {
-                throw new ValidationException("Catalogue must have an acronym or name.");
+                throw new ValidationException("Catalogue must have an abbreviation.");
             }
         } else {
             catalogueId = catalogue.getId();
@@ -66,12 +58,15 @@ public class SimpleIdCreator implements IdCreator {
         if (service.getResourceOrganisation() == null || service.getResourceOrganisation().equals("")) {
             throw new ValidationException("Resource must have a Resource Organisation.");
         }
-        if (service.getName() == null || service.getName().equals("")) {
-            throw new ValidationException("Resource must have a Name.");
+        String serviceId;
+        if (service.getAbbreviation() != null && !"".equals(service.getAbbreviation()) && !"null".equals(service.getAbbreviation())) {
+            serviceId = service.getAbbreviation();
+        } else {
+            throw new ValidationException("Resource must have an abbreviation.");
         }
         String provider = service.getResourceOrganisation();
         return String.format("%s.%s", provider, StringUtils
-                .stripAccents(service.getName())
+                .stripAccents(serviceId)
                 .replaceAll("[\n\t\\s]+", " ")
                 .replaceAll("\\s+$", "")
                 .replaceAll("[^a-zA-Z0-9\\s\\-\\_]+", "")
