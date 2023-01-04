@@ -1,5 +1,6 @@
 package eu.einfracentral.registry.manager;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.einfracentral.domain.ProviderBundle;
 import eu.einfracentral.domain.Vocabulary;
@@ -235,7 +236,9 @@ public class VocabularyManager extends ResourceManager<Vocabulary> implements Vo
             c.setRequestMethod("GET");
             c.setRequestProperty("Accept", "application/json");
             if (c.getResponseCode() == 200) {
-                Country[] countries = new ObjectMapper().readValue(c.getInputStream(), Country[].class);
+                ObjectMapper objectMapper = new ObjectMapper()
+                        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                Country[] countries = objectMapper.readValue(c.getInputStream(), Country[].class);
                 c.disconnect();
                 region.setMembers(Stream.of(countries).map(e -> e.cca2).toArray(String[]::new));
             }
